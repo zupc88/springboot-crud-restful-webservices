@@ -9,7 +9,7 @@
         <module name="springboot-crud-restful-webservices" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11">
       <module name="springboot-crud-restful-webservices" target="1.8" />
     </bytecodeTargetLevel>
   </component>

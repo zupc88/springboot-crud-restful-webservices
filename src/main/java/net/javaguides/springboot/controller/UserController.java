@@ -48,9 +48,11 @@ public class UserController {
 	public User updateUser(@RequestBody User user, @PathVariable ("id") long userId) {
 		 User existingUser = this.userRepository.findById(userId)
 			.orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
-		 existingUser.setFirstName(user.getFirstName());
-		 existingUser.setLastName(user.getLastName());
-		 existingUser.setEmail(user.getEmail());
+		existingUser.setDomainName(user.getDomainName());
+		 existingUser.setInstanceName(user.getInstanceName());
+		 existingUser.sethostName(user.gethostName());
+		 existingUser.seturlHealthCheck(user.geturlHealthCheck());
+		existingUser.setthroughput(user.getthroughput());
 		 return this.userRepository.save(existingUser);
 	}
 	

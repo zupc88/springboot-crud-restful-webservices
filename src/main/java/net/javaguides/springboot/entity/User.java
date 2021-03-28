@@ -14,25 +14,37 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+
+	@Column(name = "domain_name")
+	private String domainName;
+
+	@Column(name = "instance_name")
+	private String InstanceName;
 	
-	@Column(name = "first_name")
-	private String firstName;
+	@Column(name = "hostName")
+	private String hostName;
 	
-	@Column(name = "last_name")
-	private String lastName;
-	
-	@Column(name = "email")
-	private String email;
-	
+	@Column(name = "urlHealthCheck")
+	private String urlHealthCheck;
+
+	@Column(name = "throughput")
+	private String throughput;
+
+	@Column(name = "heapMemory")
+	private String heapMemory;
+
 	public User() {
 		
 	}
 	
-	public User(String firstName, String lastName, String email) {
+	public User(String domainName, String InstanceName, String hostName, String urlHealthCheck, String throughput, String heapMemory) {
 		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
+		this.domainName = domainName;
+		this.InstanceName = InstanceName;
+		this.hostName = hostName;
+		this.urlHealthCheck = urlHealthCheck;
+		this.throughput = throughput;
+
 	}
 	
 	public long getId() {
@@ -41,22 +53,36 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFirstName() {
-		return firstName;
+
+	public String getDomainName() {
+		return domainName;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setDomainName(String domainName) { this.domainName = domainName; }
+
+	public String getInstanceName() {
+		return InstanceName;
 	}
-	public String getLastName() {
-		return lastName;
+	public void setInstanceName(String InstanceName) {
+		this.InstanceName = InstanceName;
 	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public String gethostName() {
+		return hostName;
 	}
-	public String getEmail() {
-		return email;
+	public void sethostName(String hostName) {
+		this.hostName = hostName;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+	public String geturlHealthCheck() {
+		return urlHealthCheck;
+	}
+	public void seturlHealthCheck(String urlHealthCheck) {
+		this.urlHealthCheck = urlHealthCheck;
+	}
+	public String getthroughput() {
+		return throughput;
+	}
+	public void setthroughput(String throughput) {
+		this.throughput = throughput;
 	}
 }
