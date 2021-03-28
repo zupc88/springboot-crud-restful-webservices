@@ -50,9 +50,9 @@ public class UserController {
 			.orElseThrow(() -> new ResourceNotFoundException("User not found with id :" + userId));
 		existingUser.setDomainName(user.getDomainName());
 		 existingUser.setInstanceName(user.getInstanceName());
-		 existingUser.sethostName(user.gethostName());
-		 existingUser.seturlHealthCheck(user.geturlHealthCheck());
-		existingUser.setthroughput(user.getthroughput());
+		 existingUser.setHostName(user.getHostName());
+		 existingUser.setUrlHealthCheck(user.getUrlHealthCheck());
+		existingUser.setThroughput(user.getThroughput());
 		 return this.userRepository.save(existingUser);
 	}
 	

@@ -1,11 +1,12 @@
 package net.javaguides.springboot.entity;
 
-import javax.persistence.Column;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "users")
@@ -15,10 +16,10 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(name = "domain_name")
+	@Column(name = "domainName")
 	private String domainName;
 
-	@Column(name = "instance_name")
+	@Column(name = "instanceName")
 	private String InstanceName;
 	
 	@Column(name = "hostName")
@@ -30,8 +31,17 @@ public class User {
 	@Column(name = "throughput")
 	private String throughput;
 
-	@Column(name = "heapMemory")
-	private String heapMemory;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "heapMemory")
+	private Heap heapMemory;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "thread")
+	private Thread thread;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "dbConnectionPool")
+	private List<DBPool> dbPoolList = new ArrayList<>();;
 
 	public User() {
 		
@@ -57,32 +67,64 @@ public class User {
 	public String getDomainName() {
 		return domainName;
 	}
-	public void setDomainName(String domainName) { this.domainName = domainName; }
+
+	public void setDomainName(String domainName) {
+		this.domainName = domainName;
+	}
 
 	public String getInstanceName() {
 		return InstanceName;
 	}
-	public void setInstanceName(String InstanceName) {
-		this.InstanceName = InstanceName;
+
+	public void setInstanceName(String instanceName) {
+		InstanceName = instanceName;
 	}
 
-	public String gethostName() {
+	public String getHostName() {
 		return hostName;
 	}
-	public void sethostName(String hostName) {
+
+	public void setHostName(String hostName) {
 		this.hostName = hostName;
 	}
 
-	public String geturlHealthCheck() {
+	public String getUrlHealthCheck() {
 		return urlHealthCheck;
 	}
-	public void seturlHealthCheck(String urlHealthCheck) {
+
+	public void setUrlHealthCheck(String urlHealthCheck) {
 		this.urlHealthCheck = urlHealthCheck;
 	}
-	public String getthroughput() {
+
+	public String getThroughput() {
 		return throughput;
 	}
-	public void setthroughput(String throughput) {
+
+	public void setThroughput(String throughput) {
 		this.throughput = throughput;
+	}
+
+	public Heap getHeapMemory() {
+		return heapMemory;
+	}
+
+	public void setHeapMemory(Heap heapMemory) {
+		this.heapMemory = heapMemory;
+	}
+
+	public Thread getThread() {
+		return thread;
+	}
+
+	public void setThread(Thread thread) {
+		this.thread = thread;
+	}
+
+	public List<DBPool> getDbPoolList() {
+		return dbPoolList;
+	}
+
+	public void setDbPoolList(List<DBPool> dbPoolList) {
+		this.dbPoolList = dbPoolList;
 	}
 }
